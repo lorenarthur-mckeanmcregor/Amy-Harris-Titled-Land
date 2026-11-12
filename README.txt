@@ -28,6 +28,12 @@ Tag filter (v3, 11 Nov 2026)
 - Without &tags everything works exactly as before. Open homes and the job title are not tag filtered.
 - Campaign (v4): add &campaign=NAME to agent-go links to set utm_campaign, for example &campaign=agent-listings-titled-land.
   Without it utm_campaign stays agent-listings.
+Two column rows (v5, 12 Nov 2026, titled land email)
+- /api/agent-photo?a=EMAIL&n=1 ... n=6   Listing photo, 480 x 340, shown at 240 x 170 (left column).
+- /api/agent-copy?a=EMAIL&n=1 ... n=6    Price, address, beds, baths, cars, land, UNDER CONTRACT, and VIEW THE LISTING underneath,
+                                         520 wide, shown at 260, height fits the text (right column). Both take &tags=. Empty slots return the 1 pixel strip.
+- /api/agent-photo?a=EMAIL&n=1&s=gap         Space under row 1 (24 pixels in the email) when listing 1 exists, otherwise the 1 pixel strip.
+  Drawn by lib/agentrow.js. The full-width cards (agent-card) are unchanged.
 - Check page: /api/agent-list?a=EMAIL&tags=titled_land shows the website page it read and the listings found.
 
 Fonts: stats and title use Gelasio from Google Fonts, the free match for Georgia. The email's font list is
@@ -41,6 +47,6 @@ and links to https://mckeanmcgregor.com.au/listings
 This is its own repository and its own Vercel project. It does not share files with the open homes service.
 
 Deploy
-1. GitHub: New repository, upload the api folder (7 files), the lib folder (7 files), package.json and this README, commit.
+1. GitHub: New repository, upload the api folder (9 files), the lib folder (8 files), package.json and this README, commit.
 2. Vercel: Add New, Project, pick the repository, Deploy. Leave every setting as it is.
 3. Send the Vercel address to Claude to put into the Rex agent template.
